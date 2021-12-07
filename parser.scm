@@ -8,7 +8,7 @@
 		(cdr in)
 		'()
 		(get grammar (car in)))
-	       (cons #f (cons in '()))))]
+	       (cons #f (cons in (list '())))))]
 	[parse-rule ; ALTERNATION
 	 (lambda (grammar in store rule)
 	   (if (null? rule)
