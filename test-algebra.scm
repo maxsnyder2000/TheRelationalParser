@@ -6,16 +6,19 @@
 		     (evalo-staged
 		      (the-relational-parser
 		       `(letrec
-			    ([add (lambda (x y) (if (null? y) x
-						    (add (cons 1 x) (cdr y))))]
-			     [sub (lambda (x y) (if (null? y) x
-						    (if (null? x) #f
-							(sub (cdr x) (cdr y)))))]
-			     [mul (lambda (x y) (if (null? y) '()
-						    (add (mul x (cdr y)) x)))]
-			     [div (lambda (x y) (if (null? y) #f
-						    (if (null? x) '()
-							(if (not (sub x y)) #f
+			    ([add (lambda (x y) (if (or (not x) (not y)) #f
+						    (if (null? y) x
+							(add (cons 1 x) (cdr y)))))]
+			     [sub (lambda (x y) (if (or (not x) (not y)) #f
+						    (if (null? y) x
+							(if (null? x) #f
+							    (sub (cdr x) (cdr y))))))]
+			     [mul (lambda (x y) (if (or (not x) (not y)) #f
+						    (if (null? y) '()
+							(add (mul x (cdr y)) x))))]
+			     [div (lambda (x y) (if (or (not x) (not y)) #f
+						    (if (null? y) #f
+							(if (null? x) '()
 							    (inc (div (sub x y) y))))))]
 			     [inc (lambda (x) (if (not x) #f (cons 1 x)))])
 			  (parse
