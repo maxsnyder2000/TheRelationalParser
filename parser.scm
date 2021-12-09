@@ -1,14 +1,14 @@
 (define (the-relational-parser code)
   `(letrec
        ([parse ; PARSER (Core-OMeta)
-	 (lambda (grammar in)
-	   (if (get grammar (car in))
-	       (parse-rule
-		grammar
-		(cdr in)
-		'()
-		(get grammar (car in)))
-	       (cons #f (cons in (list '())))))]
+	 (lambda (grammar in rule-name)
+	   (if (get grammar rule-name)
+	       (cabr (parse-rule
+		      grammar
+		      in
+		      '()
+		      (get grammar rule-name)))
+	       (cons #f (list in))))]
 	[parse-rule ; ALTERNATION
 	 (lambda (grammar in store rule)
 	   (if (null? rule)
@@ -176,8 +176,9 @@
 		(cdr rule))))]
 	[eval ; SEMANTIC ACTION
 	 (lambda (out store) ((car out) store))]
-	[cbr (lambda (list) (car (cdr list)))]
-	[ccr (lambda (list) (car (cdr (cdr list))))]
+	[cbr  (lambda (l) (car (cdr l)))]
+	[ccr  (lambda (l) (car (cdr (cdr l))))]
+	[cabr (lambda (l) (cons (car l) (list (cbr l))))]
 	[get ; helper: dictionary get
 	 (lambda (dict key)
 	   (if (null? dict)

@@ -15,28 +15,27 @@ The Relational Parser (TRP) is an OMeta parser that can be relationally queried.
 
 (display
   (run-staged 1 (q)
-    (fresh (any-store)
-      (evalo-staged
-        (the-relational-parser
-          `(letrec
-            (...) ; HELPER FUNCTIONS
-              (parse
-                (list ; GRAMMAR
-                  (list 'RULE-NAME-1 ; rule 1
-                    (list ... ; syntax 1A
-                      (list '= (lambda (u) ...))) ; semantics 1A
-                    (list ... ; syntax 1B
-                      (list '= (lambda (u) ...))) ; semantics 1B
-                    ...)
-                  (list 'RULE-NAME-2 ; rule 2
-                    (list ... ; syntax 2A
-                      (list '= (lambda (u) ...))) ; semantics 2A
-                    (list ... ; syntax 2B
-                      (list '= (lambda (u) ...))) ; semantics 2B
-                    ...)
+    (evalo-staged
+      (the-relational-parser
+        `(letrec
+          (...) ; HELPER FUNCTIONS
+            (parse
+              (list ; GRAMMAR
+                (list 'RULE-NAME-1 ; rule 1
+                  (list ... ; syntax 1A
+                    (list '= (lambda (u) ...))) ; semantics 1A
+                  (list ... ; syntax 1B
+                    (list '= (lambda (u) ...))) ; semantics 1B
                   ...)
-                (cons 'RULE-NAME '(...))))) ; INPUT
-        `(... () ,any-store))))) ; OUTPUT
+                (list 'RULE-NAME-2 ; rule 2
+                  (list ... ; syntax 2A
+                    (list '= (lambda (u) ...))) ; semantics 2A
+                  (list ... ; syntax 2B
+                    (list '= (lambda (u) ...))) ; semantics 2B
+                  ...)
+                ...)
+              '(...) 'RULE-NAME))) ; INPUT
+      '(... () ,any-store)))) ; OUTPUT
 
 (display "\n")
 ```
