@@ -158,6 +158,8 @@
 		in
 		(ccr rec)
 		(cdr rule))))]
+	[eval ; SEMANTIC ACTION
+	 (lambda (out store) ((car out) store))]
 	[parse-list ; LIST
 	 (lambda (grammar in in-rem store rule choice rec)
 	   (if (and (car rec) (null? (cbr rec)))
@@ -174,8 +176,6 @@
 		in
 		(ccr rec)
 		(cdr rule))))]
-	[eval ; SEMANTIC ACTION
-	 (lambda (out store) ((car out) store))]
 	[cbr  (lambda (l) (car (cdr l)))]
 	[ccr  (lambda (l) (car (cdr (cdr l))))]
 	[cabr (lambda (l) (cons (car l) (list (cbr l))))]

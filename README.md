@@ -35,7 +35,7 @@ The Relational Parser (TRP) is an OMeta parser that can be relationally queried.
                   ...)
                 ...)
               '(...) 'RULE-NAME))) ; INPUT
-      '(... () ,any-store)))) ; OUTPUT
+      '(... ())))) ; OUTPUT
 
 (display "\n")
 ```
