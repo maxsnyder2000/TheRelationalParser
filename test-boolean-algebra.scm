@@ -12,7 +12,7 @@
 		   (list
 		    (list 'Bit '(0) '(1))
 		    (list 'Exp
-			  '((Bit))
+			  (list '(Bit))
 			  (list '- '(: x (Exp))
 				(list '= (lambda (u)
 					   (neg (get u 'x)))))
