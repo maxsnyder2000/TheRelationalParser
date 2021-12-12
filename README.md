@@ -75,5 +75,5 @@ Query for 100 boolean expressions (0, 1, and, or, not) that evaluate to the valu
 Query for the value of the input stream "((5 x 4) / (3 + (2 - 1)))".
 
 ```scheme
-(load "test-algebra.scm")
+(load "test-algebra-2.scm")
 ```

@@ -166,7 +166,7 @@
 	       (parse-choice ; success
 		grammar
 		in
-		(car rec)
+		(car in-rem)
 		(cdr in-rem)
 		(ccr rec)
 		rule
