@@ -77,3 +77,11 @@ Query for the value of the input stream "((5 x 4) / (3 + (2 - 1)))".
 ```scheme
 (load "test-algebra-2.scm")
 ```
+
+###### English
+
+Query for the value of "a program learns English" given a grammar with holes.
+
+```scheme
+(load "test-english.scm")
+```
